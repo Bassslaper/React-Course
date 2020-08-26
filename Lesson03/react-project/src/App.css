@@ -39,5 +39,11 @@
 
 
 h1 {
-  background-repeat: no-repeat;
+  color: #fff;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

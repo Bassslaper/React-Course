@@ -4,20 +4,11 @@ import React from 'react';
 import styled from 'styled-components';
 import dbMenu from './DBMenu';
 import { ListItem } from './ListItem';
-import Banner from '../image/banner.png';
+import { BannerMenu } from './Banner';
 
 const MenuStyled = styled.main`
   background-color: #ccc;
   margin-top: 80px; 
-`;
-
-const BannerMenu = styled.div`
-  height: 210px;
-  width: 100%;
-  background-image: ${({ img }) => `url(${img})`};
-  position: relative;
-  background-position: center;
-  background-size: cover;
 `;
 
 
@@ -26,7 +17,7 @@ padding: 30px;`;
 
 export const Menu = () => (
   <MenuStyled>
-    <BannerMenu img={Banner}/>
+    <BannerMenu/>
     <SectionMenu>
       <h2>Бургеры</h2>
       <ListItem itemList={dbMenu.burger}/>
