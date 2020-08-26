@@ -5,24 +5,14 @@ const button = {
 
 };
 
-class Render extends React.Component {
+function Render(){
 
-  constructor() {
-    super();
-    this.state = {
-      counter: 0
-    };
-  }
+  const [count, changeCount] = React.useState(0);
+  console.log('count: ', count);
+  console.log('changeCount: ', changeCount);
 
-  changeCounter = () => {
-    console.log(this);
-    this.setState({
-      counter: this.state.counter + 1
-    })
-  }
 
-  render() {
-    return (
+  return (
       <div>  
         <header>
             <div className="container">
@@ -33,12 +23,12 @@ class Render extends React.Component {
         <main>
             <div className="container">
               <p>Javascript library</p>
-              <button style={button} onClick={this.changeCounter}>{this.state.counter}</button>
+              <button style={button} onClick={() => changeCount(count + 1)}>{count}</button>
             </div>
         </main>
       </div> 
     );
-  }
+
 }
 
 
