@@ -2,8 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React from'react';
 import styled from 'styled-components';
-import LogoImg from '../image/logo.svg';
-import SignImg from '../image/sign.svg';
+import logoImg from '../image/logo.svg';
+import signImg from '../image/sign.svg';
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -34,8 +34,8 @@ const ImgLogo = styled.img`
   width: 50px;
 `;
 
-const ButtonHeader = styled.button`
-  background-color: #299B01;
+const ButtonLogin = styled.button`
+  background-color: transparent;
   color: #fff;
   border: none;
   outline: none;
@@ -43,12 +43,12 @@ const ButtonHeader = styled.button`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-size: 16px;
 }
 `;
 const ImgSign = styled.img`
-  width: 30px;
-  height: 30px;
-  margin-bottom: 5px;
+  height: 28px;
+  margin-bottom: 4px;
 `;
 
 
@@ -57,13 +57,13 @@ const NavBar = () => {
   return (
   <NavBarStyled>
     <Logo>
-      <ImgLogo src={SignImg} alt="logo"/>
+      <ImgLogo src={logoImg} alt="logo"/>
       <H1>MrDonald's</H1>
     </Logo>
-    <ButtonHeader>
-        <ImgSign src={SignImg} alt="sign icon"/>
+    <ButtonLogin>
+        <ImgSign src={signImg} alt="sign icon"/>
         <div>Войти</div>
-    </ButtonHeader>
+    </ButtonLogin>
   </NavBarStyled>
   );
 };
