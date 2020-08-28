@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
+import {ButtonCheckout} from './ButtonCheckout';
 
 const Overlay = styled.div`
   position: fixed;
@@ -29,34 +30,26 @@ const Banner = styled.div`
   background-image: url(${({img}) => img});
   background-size: cover;
   background-position: center;
-  margin-bottom: 20px;
+
 `;
 
 const Container = styled.div`
-  max-width: 540px;
-  padding-left: 7px;
-  padding-right: 7px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px 30px 20px;
+  justify-content: space-between;
+  height: calc(100% - 200px);
 `;
 
 const ModalTitleBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 26px;
-  margin-bottom: 222px;
+  font-size: 24px;
+  font-family: 'Pacifico', cursive;
 `;
 
-const ModalAddButton = styled.button`
-  display: block;
-  padding: 20px 80px 20px 73px;
-  background: #299B01;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 21px;
-  margin: 0 auto;
-`;
+
 
 export const ModalItem = ({ openItem , setOpenItem}) => { 
 
@@ -75,11 +68,11 @@ export const ModalItem = ({ openItem , setOpenItem}) => {
       <Container>
          <ModalTitleBlock>
             <h2>{openItem.name}</h2>
-            <span style={{fontFamily: 'Pacifico'}}>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</span>
+            <span>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</span>
          </ModalTitleBlock>
-         <ModalAddButton>
+         <ButtonCheckout>
            Добавить
-         </ModalAddButton>
+         </ButtonCheckout>
      
       </Container>  
    

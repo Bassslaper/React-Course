@@ -3,8 +3,10 @@ import React from 'react';
 import GlobalStyle from './Components/GlobalStyle';
 import styled from 'styled-components';
 import NavBar from './Components/NavBar';
+import { Order } from './Components/Order';
 import { Menu } from './Components/Menu';
 import { ModalItem } from './Components/ModalItem';
+
 
 function App() {
 
@@ -14,6 +16,7 @@ function App() {
     <>
       <GlobalStyle/>
       <NavBar/>
+      <Order/>
       <Menu setOpenItem={setOpenItem}/>
       <ModalItem 
           openItem={openItem}
