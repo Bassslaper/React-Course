@@ -2,9 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
-import dbMenu from './DBMenu';
+import dbMenu from '../DBMenu';
 import { ListItem } from './ListItem';
-import Banner from '../image/banner.png';
+import banner from '../../image/banner.png';
+
 
 const MenuStyled = styled.main`
   background-color: #ccc;
@@ -12,7 +13,8 @@ const MenuStyled = styled.main`
   margin-left: 380px;
 `;
 
-const BannerMenu = styled.div`
+
+const BannerMenu = styled.div `
   height: 210px;
   width: 100%;
   background-image: ${({ img }) => `url(${img})`};
@@ -27,7 +29,7 @@ padding: 30px;`;
 
 export const Menu = ({ setOpenItem }) => (
   <MenuStyled>
-    <BannerMenu img={Banner}/>
+    <BannerMenu img={banner}/>
     <SectionMenu>
       <h2>Бургеры</h2>
       <ListItem 

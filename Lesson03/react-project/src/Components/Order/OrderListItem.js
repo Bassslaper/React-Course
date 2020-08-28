@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
-import garbageCanImg from '../image/garbage_can.svg';
+import garbageCanImg from '../../image/garbage_can.svg';
 
 const GarbageButton = styled.button`
   width: 24px;
@@ -36,12 +36,12 @@ const ItemPrice = styled.span `
 `;
 
 
-export const OrderListItem = () => (
+export const OrderListItem = ({ order }) => (
 
   <OrderItemStyled>
-    <ItemName>JS Burger</ItemName>
+    <ItemName>{order.name}</ItemName>
     <span>2</span>
-    <ItemPrice>750 Р</ItemPrice>
+    <ItemPrice>{order.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</ItemPrice>
     <GarbageButton/>
   </OrderItemStyled>
     

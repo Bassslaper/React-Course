@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
-import {ButtonCheckout} from './ButtonCheckout';
+import {ButtonCheckout} from '../Style/ButtonCheckout';
 
 const Overlay = styled.div`
   position: fixed;
@@ -51,16 +51,23 @@ const ModalTitleBlock = styled.div`
 
 
 
-export const ModalItem = ({ openItem , setOpenItem}) => { 
+export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => { 
 
-  function closeModal(e) {
+  const closeModal = (e) => {
     if(e.target.id === 'overlay') {
       setOpenItem(null);
     }
-  }
+  };
 
-  if(!openItem) return null;
+  const order = {
+    ...openItem
+  };
 
+  const addToOrder = () => {
+    setOrders([...orders, order]);
+    setOpenItem(null);
+  };
+ 
   return (
     <Overlay id="overlay" onClick={closeModal}>
     <Modal>
@@ -70,7 +77,7 @@ export const ModalItem = ({ openItem , setOpenItem}) => {
             <h2>{openItem.name}</h2>
             <span>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</span>
          </ModalTitleBlock>
-         <ButtonCheckout>
+         <ButtonCheckout onClick={addToOrder}>
            Добавить
          </ButtonCheckout>
      
