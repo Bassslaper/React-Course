@@ -3,6 +3,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import garbageCanImg from '../../image/garbage_can.svg';
+import { totalPrice } from '../Functions/secondartFuncrion';
+import { formatCurrency } from '../Functions/secondartFuncrion';
 
 const GarbageButton = styled.button`
   width: 24px;
@@ -31,7 +33,7 @@ const ItemName = styled.span`
 const ItemPrice = styled.span `
   margin-left: 20px;
   margin-right: 10px;
-  min-width: 65px;
+  min-width: 95px;
   text-align: right;
 `;
 
@@ -40,8 +42,8 @@ export const OrderListItem = ({ order }) => (
 
   <OrderItemStyled>
     <ItemName>{order.name}</ItemName>
-    <span>2</span>
-    <ItemPrice>{order.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</ItemPrice>
+    <span>{order.count}</span>
+    <ItemPrice>{formatCurrency(totalPrice(order))}</ItemPrice>
     <GarbageButton/>
   </OrderItemStyled>
     

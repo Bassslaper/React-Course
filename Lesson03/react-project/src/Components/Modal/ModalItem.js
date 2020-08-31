@@ -1,8 +1,13 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
 import {ButtonCheckout} from '../Style/ButtonCheckout';
+import { CountItem } from './CounItem';
+import { useCount } from '../Hooks/useCount';
+import { totalPrice } from '../Functions/secondartFuncrion';
+import { formatCurrency } from '../Functions/secondartFuncrion';
 
 const Overlay = styled.div`
   position: fixed;
@@ -49,9 +54,17 @@ const ModalTitleBlock = styled.div`
   font-family: 'Pacifico', cursive;
 `;
 
+const TotalPriceItem =styled.div`
+  display: flex;
+  justify-content: space-between;
+
+`;
+
 
 
 export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => { 
+
+  const counter = useCount();
 
   const closeModal = (e) => {
     if(e.target.id === 'overlay') {
@@ -60,8 +73,10 @@ export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => {
   };
 
   const order = {
-    ...openItem
+    ...openItem,
+    count: counter.count
   };
+
 
   const addToOrder = () => {
     setOrders([...orders, order]);
@@ -75,8 +90,14 @@ export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => {
       <Container>
          <ModalTitleBlock>
             <h2>{openItem.name}</h2>
-            <span>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</span>
+            <span>{formatCurrency(openItem.price)}</span>
          </ModalTitleBlock>
+         <CountItem {...counter}/>
+         <TotalPriceItem>
+           <span>Цена:</span>
+           <span>{formatCurrency(totalPrice(order))}</span>
+         </TotalPriceItem>
+
          <ButtonCheckout onClick={addToOrder}>
            Добавить
          </ButtonCheckout>

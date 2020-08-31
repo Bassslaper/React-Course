@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import NavBar from './Components/NavBar/NavBar';
 import { Order } from './Components/Order/Order';
 import { Menu } from './Components/Menu/Menu';
-import { ModalItem } from './Components/Menu/ModalItem';
+import { ModalItem } from './Components/Modal/ModalItem';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 

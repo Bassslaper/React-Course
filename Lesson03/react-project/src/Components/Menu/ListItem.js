@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
+import { formatCurrency } from '../Functions/secondartFuncrion';
 
 const List = styled.ul`
    display: flex;
@@ -25,7 +26,7 @@ const Item = styled.li`
   color: #fff;
   z-index: 1;
   &:after {
-    content '';
+    content: '';
     position: absolute;
     top: 0;
     bottom: 0;
@@ -42,7 +43,6 @@ const Item = styled.li`
       opacity: 0;
     }
   }
-}
 `;
 
 export const ListItem = ({ itemList, setOpenItem }) => (
@@ -55,7 +55,7 @@ export const ListItem = ({ itemList, setOpenItem }) => (
       >
 
         <div>{item.name}</div>
-         <div>{item.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</div>
+        <div>{formatCurrency(item.price)}</div>
 
       </Item>
     ))}
