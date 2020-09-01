@@ -7,6 +7,8 @@ import styled from 'styled-components';
 const CountWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
+
 `;
 
 const CountInput = styled.input`

@@ -8,6 +8,8 @@ import { CountItem } from './CounItem';
 import { useCount } from '../Hooks/useCount';
 import { totalPrice } from '../Functions/secondartFuncrion';
 import { formatCurrency } from '../Functions/secondartFuncrion';
+import { Toppings } from './Toppings';
+import { useToppings } from '../Hooks/useTopping';
 
 const Overlay = styled.div`
   position: fixed;
@@ -26,7 +28,7 @@ const Overlay = styled.div`
 const Modal = styled.div`
   background-color: #fff;
   width: 600px;
-  height: 600px;
+
 `;
 
 const Banner = styled.div`
@@ -41,7 +43,7 @@ const Banner = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 30px 30px 20px;
+  padding: 20px 40px 30px 37px;
   justify-content: space-between;
   height: calc(100% - 200px);
 `;
@@ -52,11 +54,14 @@ const ModalTitleBlock = styled.div`
   justify-content: space-between;
   font-size: 24px;
   font-family: 'Pacifico', cursive;
+  margin-bottom: 20px;
 `;
 
 const TotalPriceItem =styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 30px;
+  font-weight: bold;
 
 `;
 
@@ -66,6 +71,8 @@ export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => {
 
   const counter = useCount();
 
+  const toppings = useToppings(openItem);
+
   const closeModal = (e) => {
     if(e.target.id === 'overlay') {
       setOpenItem(null);
@@ -74,7 +81,8 @@ export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => {
 
   const order = {
     ...openItem,
-    count: counter.count
+    count: counter.count,
+    topping: toppings.toppings
   };
 
 
@@ -93,6 +101,8 @@ export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => {
             <span>{formatCurrency(openItem.price)}</span>
          </ModalTitleBlock>
          <CountItem {...counter}/>
+         <h3>Добавки</h3>
+         {openItem.toppings && <Toppings {...toppings}/>}
          <TotalPriceItem>
            <span>Цена:</span>
            <span>{formatCurrency(totalPrice(order))}</span>
