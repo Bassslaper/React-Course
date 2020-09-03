@@ -2,15 +2,27 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
 
-const getTopping = toppings => toppings.map(item => ({
-    name: item,
-    checked: false
-}));
+const getTopping = toppings => {
+
+  // if(!toppings) {
+  //   return [];
+  // }
+
+
+   return toppings.map(item => ({
+     name: item,
+     checked: false
+   }));
+};
+
 
 export function useToppings(openItem) {
 
-  const [toppings, setToppings] = useState(getTopping(openItem.toppings));
+  const reddyTopping = openItem.toppings ? getTopping(openItem.toppings) : [];
 
+  const [toppings, setToppings] = useState(reddyTopping);
+
+ 
   const checkToppings = index => {
     setToppings(toppings.map((item, i) => {
       if(i === index) {

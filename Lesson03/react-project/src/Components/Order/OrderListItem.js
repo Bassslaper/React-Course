@@ -55,21 +55,28 @@ const ItemPrice = styled.span `
   text-align: right;
 `;
 
+const ItemChoice = styled.span`
+    font-style: italic;
+    font-size: 16px;
+    margin-left: 5px;
+`;
 
 
 
-export const OrderListItem = ({ order }) => (
+export const OrderListItem = ({ order, setOrders, deleteItem }) => (
 
-  <OrderItemStyled>
-    <OrderBox>
-      <ItemName>{order.name}</ItemName>
-      <span>{order.count}</span>
-      <ItemPrice>{formatCurrency(totalPrice(order))}</ItemPrice>
-      <GarbageButton/>
-    </OrderBox>
-    <ToppingsItem>{totalTopping(order)}</ToppingsItem>
-  </OrderItemStyled>
+      <OrderItemStyled>
+          <OrderBox>
+              <ItemName>{order.name}
+                 
+                 <ItemChoice>{order.choice}</ItemChoice>
+              </ItemName>
+              <span>{order.count}</span>
+              <ItemPrice>{formatCurrency(totalPrice(order))}</ItemPrice>
+              <GarbageButton onClick={deleteItem}/>
+          </OrderBox>
+        <ToppingsItem>{totalTopping(order)}</ToppingsItem>
+        </OrderItemStyled>
+  );
     
 
-
-);
