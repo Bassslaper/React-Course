@@ -18,7 +18,7 @@ const getTopping = toppings => {
 
 export function useToppings(openItem) {
 
-  const reddyTopping = openItem.toppings ? getTopping(openItem.toppings) : [];
+  const reddyTopping = openItem.topping ? openItem.topping : openItem.toppings ? getTopping(openItem.toppings) : [];
 
   const [toppings, setToppings] = useState(reddyTopping);
 

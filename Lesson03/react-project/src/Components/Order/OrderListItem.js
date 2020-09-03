@@ -17,6 +17,7 @@ const GarbageButton = styled.button`
   background-size: cover;
   background-repeat: no-repeat;
   cursor: pointer;
+  outline: none;
 `;
 
 const OrderItemStyled = styled.li`
@@ -63,9 +64,9 @@ const ItemChoice = styled.span`
 
 
 
-export const OrderListItem = ({ order, setOrders, deleteItem }) => (
+export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => (
 
-      <OrderItemStyled>
+      <OrderItemStyled onClick={() => setOpenItem({...order, index})}>
           <OrderBox>
               <ItemName>{order.name}
                  
@@ -73,7 +74,7 @@ export const OrderListItem = ({ order, setOrders, deleteItem }) => (
               </ItemName>
               <span>{order.count}</span>
               <ItemPrice>{formatCurrency(totalPrice(order))}</ItemPrice>
-              <GarbageButton onClick={deleteItem}/>
+              <GarbageButton onClick={() => deleteItem(index)}/>
           </OrderBox>
         <ToppingsItem>{totalTopping(order)}</ToppingsItem>
         </OrderItemStyled>
