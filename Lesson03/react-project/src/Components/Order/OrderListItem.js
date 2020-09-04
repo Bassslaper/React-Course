@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import garbageCanImg from '../../image/garbage_can.svg';
 import { totalPrice } from '../Functions/secondartFuncrion';
@@ -26,6 +26,7 @@ const OrderItemStyled = styled.li`
   align-items: flex-start;
   flex-direction:column;
   margin-bottom: 27px;
+  cursor: pointer;
 `;
 const OrderBox = styled.div`
   display: flex;
@@ -64,20 +65,24 @@ const ItemChoice = styled.span`
 
 
 
-export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => (
+export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
 
-      <OrderItemStyled onClick={() => setOpenItem({...order, index})}>
-          <OrderBox>
-              <ItemName>{order.name}
+    const refDeleteButton = useRef(null);
+
+    return  (
+        <OrderItemStyled onClick={(e) => e.target !== refDeleteButton.current && setOpenItem({...order, index})}>
+              <OrderBox>
+                 <ItemName>{order.name}
                  
                  <ItemChoice>{order.choice}</ItemChoice>
               </ItemName>
               <span>{order.count}</span>
               <ItemPrice>{formatCurrency(totalPrice(order))}</ItemPrice>
-              <GarbageButton onClick={() => deleteItem(index)}/>
-          </OrderBox>
-        <ToppingsItem>{totalTopping(order)}</ToppingsItem>
+              <GarbageButton ref={refDeleteButton} onClick={() => deleteItem(index)}/>
+           </OrderBox>
+           <ToppingsItem>{totalTopping(order)}</ToppingsItem>
         </OrderItemStyled>
-  );
+    );
+};
     
 
