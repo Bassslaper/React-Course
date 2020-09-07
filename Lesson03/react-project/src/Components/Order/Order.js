@@ -59,8 +59,7 @@ const EmptyList = styled.p`
 `;
 
 
-export const Order = ({ orders, setOrders, setOpenItem}) => {
-  console.log('orders: ', orders);
+export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication}) => {
 
   const deleteItem = index => {
 
@@ -81,6 +80,40 @@ export const Order = ({ orders, setOrders, setOpenItem}) => {
     return order.count + result;
   }, 0);
 
+  const checkLogIn = () => {
+    console.log({authentication});
+
+    const getToppings = (item) => item.topping.filter(item => item.checked)
+            .map(item => item.name)
+            .join(', ');
+       
+
+    const totalOrders = () => { 
+
+      orders.map((item, index) => {
+        return  (
+          console.log(`${index + 1}. Наименование: ${item.name} ${item.choice ? item.choice : ''}
+   Кол-во: ${item.count}
+   Добавки:  ${getToppings(item)}
+   Цена: ${formatCurrency(totalPrice(item))}
+   `)
+          
+        );
+          
+       
+      });
+
+      console.log('Итого к оплате: ', formatCurrency(total));
+    }
+
+    if(authentication) {
+      console.log('Заказ пользователья:');
+      totalOrders();
+    } else {
+      logIn();
+    }
+    
+  };
 
   return (
     <>
@@ -105,7 +138,7 @@ export const Order = ({ orders, setOrders, setOpenItem}) => {
             <TotalPrice>{formatCurrency(total)}</TotalPrice>
           </OrderTotal>
 
-          <ButtonCheckout>Оформить</ButtonCheckout>
+          <ButtonCheckout onClick={checkLogIn}>Оформить</ButtonCheckout>
       </OrderStyled>
     </>
   );

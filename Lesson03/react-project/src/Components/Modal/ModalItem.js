@@ -30,6 +30,7 @@ const Overlay = styled.div`
 const Modal = styled.div`
   background-color: #fff;
   width: 600px;
+  border: 2px solid #299B01;
 
 `;
 
