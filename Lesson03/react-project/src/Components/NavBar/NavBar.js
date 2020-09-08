@@ -2,8 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React from'react';
 import styled from 'styled-components';
-import logoImg from '../image/logo.svg';
-import signImg from '../image/sign.svg';
+import logoImg from '../../image/logo.svg';
+import signImg from '../../image/sign.svg';
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -11,7 +11,7 @@ const NavBarStyled = styled.header`
   left: 0;
   z-index: 999;
   height: 80px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,15 +44,37 @@ const ButtonLogin = styled.button`
   align-items: center;
   flex-direction: column;
   font-size: 16px;
-}
 `;
+
 const ImgSign = styled.img`
   height: 28px;
   margin-bottom: 4px;
 `;
 
+const User = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+`;
 
-const NavBar = () => {
+const LogOut = styled.span`
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 12px;
+  &:hover {
+    padding: 10px 10px;
+    border: 2px solid green;
+    box-shadow: 3px 1px 10px rgba(0,0,0, 0.2);
+  }
+`;
+
+const Figure = styled.figure`
+  margin: 0 30px;
+
+`;
+
+const NavBar = ({ authentication, logIn, logOut}) => {
 
   return (
   <NavBarStyled>
@@ -60,10 +82,20 @@ const NavBar = () => {
       <ImgLogo src={logoImg} alt="logo"/>
       <H1>MrDonald's</H1>
     </Logo>
-    <ButtonLogin>
-        <ImgSign src={signImg} alt="sign icon"/>
-        <div>Войти</div>
-    </ButtonLogin>
+    {authentication ? 
+    <User>
+        <Figure>
+          <ImgSign src={signImg} alt={authentication.displayName}/>
+          <figcaption>{authentication.displayName}</figcaption>
+        </Figure>
+        <LogOut title="Выйти" onClick={logOut}>Выйти</LogOut>
+    </User> : 
+    <ButtonLogin onClick={logIn}>
+        <Figure>
+          <ImgSign src={signImg} alt="sign icon"/>
+          <figcaption>Войти</figcaption>
+        </Figure>
+    </ButtonLogin> }
   </NavBarStyled>
   );
 };

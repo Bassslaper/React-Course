@@ -51,7 +51,16 @@ const GlobalStyle = createGlobalStyle `
   }
 
   input, button {
-    font-family: inherit;
+    font: inherit;
+  }
+
+  input[type="number"] {
+    -mos-apperance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-apperance: none;
   }
 `;
 

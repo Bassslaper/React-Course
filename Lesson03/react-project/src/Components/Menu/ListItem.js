@@ -2,10 +2,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
+import { formatCurrency } from '../Functions/secondartFuncrion';
 
 const List = styled.ul`
    display: flex;
    justify-content: space-between;
+   align-items: center;
    flex-wrap: wrap;
    
 `;
@@ -24,7 +26,7 @@ const Item = styled.li`
   color: #fff;
   z-index: 1;
   &:after {
-    content '';
+    content: '';
     position: absolute;
     top: 0;
     bottom: 0;
@@ -41,19 +43,19 @@ const Item = styled.li`
       opacity: 0;
     }
   }
-}
 `;
 
-export const ListItem = ({ itemList }) => (
+export const ListItem = ({ itemList, setOpenItem }) => (
   <List>
     {itemList.map(item => (
       <Item 
           key={item.id}
           img={item.img}
+          onClick={() => setOpenItem(item)}
       >
 
         <div>{item.name}</div>
-         <div>{item.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</div>
+        <div>{formatCurrency(item.price)}</div>
 
       </Item>
     ))}
