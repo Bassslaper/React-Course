@@ -23,16 +23,38 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .5);
-  z-index: 20;
+  z-index: 30;
   overflow-y: auto;
 `;
 
 const Modal = styled.div`
+  position: relative;
   background-color: #fff;
   width: 600px;
   border: 2px solid #299B01;
+  z-index: 35;
+`;
+
+const ModalOrder = styled.div `
+  position: relative;
+  background-color: #fff;
+  width: 600px;
+  height: 300px;
+  border: 2px solid #299B01;
+  z-index: 35;
+`;
+
+const Thankfulness = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
 
 `;
+
 
 const Banner = styled.div`
   width: 100%;
@@ -49,6 +71,14 @@ const Container = styled.div`
   padding: 20px 40px 30px 37px;
   justify-content: space-between;
   height: calc(100% - 200px);
+`;
+
+const ContainerOrder = styled.div `
+  display: flex;
+  align-items: center;
+  padding: 20px 40px 30px 37px;
+  justify-content: center;
+  height: 100%;
 `;
 
 const ModalTitleBlock = styled.div`
@@ -137,3 +167,31 @@ export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => {
     </Overlay>
   );
 };
+
+
+export const ModalOrderItem = ({openModal , setOpenModal, orders}) => {
+  
+  const closeModal = (e) => {
+      console.log('e.target.id: ', e.target.id);
+    if(e.target.id === 'overlay') {
+      setOpenModal(null);
+      console.log('openModal из МОдалки', openModal);
+    }
+  };
+  
+  return (
+    <Overlay Overlay id = "overlay" onClick = {closeModal}>
+    <ModalOrder>
+      <ContainerOrder>
+        <Thankfulness>
+          <p>Cпасибо за Ваш заказ!</p>
+          <p>В скором в ремени с Вами свяжется оператор.</p>
+        </Thankfulness>
+      </ContainerOrder>  
+   
+    </ModalOrder>
+
+    </Overlay>
+  );
+
+}

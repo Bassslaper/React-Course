@@ -4,11 +4,6 @@ import { useState } from 'react';
 
 const getTopping = toppings => {
 
-  // if(!toppings) {
-  //   return [];
-  // }
-
-
    return toppings.map(item => ({
      name: item,
      checked: false

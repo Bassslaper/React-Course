@@ -10,9 +10,12 @@ import NavBar from './Components/NavBar/NavBar';
 import { Order } from './Components/Order/Order';
 import { Menu } from './Components/Menu/Menu';
 import { ModalItem } from './Components/Modal/ModalItem';
+import { ModalOrderItem } from './Components/Modal/ModalItem';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
+import { useOpenModal } from './Components/Hooks/useOpenModal';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
+import { useTitle } from './Components/Hooks/useTitle';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCTrzuLsZiF73QzMPnlroxfDBnrPmFFmqI",
@@ -29,11 +32,11 @@ firebase.initializeApp(firebaseConfig);
 function App() {
 
   const authFirebase = firebase.auth;
-
   const auth = useAuth(authFirebase);
-
   const openItem = useOpenItem();
+  const openModal = useOpenModal();
   const orders = useOrders();
+  useTitle(openItem.openItem);
 
 
   return (
@@ -47,7 +50,8 @@ function App() {
           firebaseDatabase={firebase.database}
       />
       <Menu {...openItem}/>
-      {openItem.openItem && <ModalItem {...openItem} {...orders}/> } 
+        {openItem.openItem && <ModalItem {...openItem} {...orders} {...openModal}/> } 
+        {openModal.openModal && <ModalOrderItem {...openModal} {...orders} {...auth}/>}
     </>
   );
 }

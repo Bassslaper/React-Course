@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {ButtonCheckout} from '../Style/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
+
 import { totalPrice } from '../Functions/secondartFuncrion';
 import { formatCurrency } from '../Functions/secondartFuncrion';
 import { projection } from '../Functions/secondartFuncrion';
@@ -69,8 +70,9 @@ const rulesData = {
   choice: ['choice', item => item ? item : 'no choices']
 }
 
-export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication, firebaseDatabase}) => {
-
+export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication, openModal, setOpenModal, firebaseDatabase}) => {
+  console.log('orders: ', orders);
+  
   const dataBase = firebaseDatabase();
 
   const sentOrder = () => {
@@ -81,6 +83,9 @@ export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication, f
       email: authentication.email,
       order: newOrder
     });
+  
+    setOpenModal([]);
+    setOrders([]);
 
   };
 
@@ -128,8 +133,9 @@ export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication, f
             <span>{totalCounter}</span>
             <TotalPrice>{formatCurrency(total)}</TotalPrice>
           </OrderTotal>
-
-          <ButtonCheckout onClick={checkLogIn}>Оформить</ButtonCheckout>
+          
+          <ButtonCheckout  disabled={!orders.length} onClick={checkLogIn}>Оформить</ButtonCheckout>
+         
       </OrderStyled>
     </>
   );
