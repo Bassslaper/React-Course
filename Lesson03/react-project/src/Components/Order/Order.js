@@ -83,7 +83,7 @@ export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication, o
       email: authentication.email,
       order: newOrder
     });
-  
+    setOpenModal(authentication.displayName);
     setOrders([]);
 
   };
@@ -110,7 +110,6 @@ export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication, o
   const checkLogIn = () => {
 
     if(authentication) {
-      setOpenModal(authentication.displayName);
       sentOrder();
      
     } else {
