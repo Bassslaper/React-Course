@@ -40,6 +40,8 @@ const LoaderWrap =styled.div`
 const SectionMenu = styled.section`
 padding: 30px;`;
 
+
+
 export const Menu = ({ setOpenItem }) => {
 
  const res= useFetch();

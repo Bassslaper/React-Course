@@ -84,7 +84,6 @@ export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication, o
       order: newOrder
     });
   
-    setOpenModal([]);
     setOrders([]);
 
   };
@@ -108,7 +107,15 @@ export const Order = ({ orders, setOrders, setOpenItem, logIn, authentication, o
     return order.count + result;
   }, 0);
 
-  const checkLogIn = () => authentication ? sentOrder() : logIn();
+  const checkLogIn = () => {
+
+    if(authentication) {
+      setOpenModal(authentication.displayName);
+      sentOrder();
+     
+    } else {
+      logIn();
+    }};
    
 
   return (

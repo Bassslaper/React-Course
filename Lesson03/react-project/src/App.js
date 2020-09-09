@@ -36,6 +36,7 @@ function App() {
   const openItem = useOpenItem();
   const openModal = useOpenModal();
   const orders = useOrders();
+
   useTitle(openItem.openItem);
 
 
@@ -47,10 +48,11 @@ function App() {
           {...orders} 
           {...openItem} 
           {...auth}
+          {...openModal}
           firebaseDatabase={firebase.database}
       />
       <Menu {...openItem}/>
-        {openItem.openItem && <ModalItem {...openItem} {...orders} {...openModal}/> } 
+        {openItem.openItem && <ModalItem {...openItem} {...orders}/> } 
         {openModal.openModal && <ModalOrderItem {...openModal} {...orders} {...auth}/>}
     </>
   );

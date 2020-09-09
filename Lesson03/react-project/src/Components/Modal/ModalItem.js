@@ -23,7 +23,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .5);
-  z-index: 30;
+  z-index: 150;
   overflow-y: auto;
 `;
 
@@ -32,7 +32,7 @@ const Modal = styled.div`
   background-color: #fff;
   width: 600px;
   border: 2px solid #299B01;
-  z-index: 35;
+  z-index: 155;
 `;
 
 const ModalOrder = styled.div `
@@ -169,22 +169,24 @@ export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => {
 };
 
 
-export const ModalOrderItem = ({openModal , setOpenModal, orders}) => {
+export const ModalOrderItem = ({openModal , setOpenModal, orders, authentication}) => {
   
   const closeModal = (e) => {
       console.log('e.target.id: ', e.target.id);
     if(e.target.id === 'overlay') {
       setOpenModal(null);
-      console.log('openModal из МОдалки', openModal);
+      console.log('openModal из Модалки', openModal);
     }
   };
+
+  const person = authentication.displayName.split(' ')[0];
   
   return (
     <Overlay Overlay id = "overlay" onClick = {closeModal}>
     <ModalOrder>
       <ContainerOrder>
         <Thankfulness>
-          <p>Cпасибо за Ваш заказ!</p>
+          <p>{person}, cпасибо за Ваш заказ!</p>
           <p>В скором в ремени с Вами свяжется оператор.</p>
         </Thankfulness>
       </ContainerOrder>  
