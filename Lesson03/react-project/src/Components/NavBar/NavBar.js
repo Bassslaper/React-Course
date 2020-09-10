@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React from'react';
+import React, { useContext} from'react';
 import styled from 'styled-components';
 import logoImg from '../../image/logo.svg';
 import signImg from '../../image/sign.svg';
+import { Context } from '../Functions/context';
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -74,7 +75,12 @@ const Figure = styled.figure`
 
 `;
 
-const NavBar = ({ authentication, logIn, logOut}) => {
+const NavBar = () => {
+
+  const { auth } = useContext(Context);
+
+  const {authentication, logIn, logOut } = auth;
+
 
   return (
   <NavBarStyled>
@@ -82,7 +88,7 @@ const NavBar = ({ authentication, logIn, logOut}) => {
       <ImgLogo src={logoImg} alt="logo"/>
       <H1>MrDonald's</H1>
     </Logo>
-    {authentication ? 
+    { authentication ? 
     <User>
         <Figure>
           <ImgSign src={signImg} alt={authentication.displayName}/>

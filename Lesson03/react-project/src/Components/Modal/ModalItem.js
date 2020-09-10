@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext} from'react';
 import styled from 'styled-components';
 import {ButtonCheckout} from '../Style/ButtonCheckout';
 import { CountItem } from './CounItem';
@@ -12,20 +12,9 @@ import { Toppings } from './Toppings';
 import { Choices } from './Choices';
 import { useToppings } from '../Hooks/useTopping';
 import { useChoices } from '../Hooks/useChoices';
+import { Context } from '../Functions/context';
+import { OrderTitle, OrderTotal, TotalPriceItem, Overlay } from '../Style/ModalStyle';
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .5);
-  z-index: 150;
-  overflow-y: auto;
-`;
 
 const Modal = styled.div`
   position: relative;
@@ -90,17 +79,20 @@ const ModalTitleBlock = styled.div`
   margin-bottom: 20px;
 `;
 
-const TotalPriceItem =styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  font-weight: bold;
 
-`;
+export const ModalItem = () => { 
 
+  const { 
+    openItem: {
+      setOpenItem,
+      openItem
+    },
+    orders: { 
+      orders,
+      setOrders
+    }
+  } = useContext(Context);
 
-
-export const ModalItem = ({ openItem , setOpenItem, orders, setOrders }) => { 
 
   const counter = useCount(openItem.count);
 

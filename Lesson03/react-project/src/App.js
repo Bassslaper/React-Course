@@ -11,11 +11,18 @@ import { Order } from './Components/Order/Order';
 import { Menu } from './Components/Menu/Menu';
 import { ModalItem } from './Components/Modal/ModalItem';
 import { ModalOrderItem } from './Components/Modal/ModalItem';
+import { OrderConfirm } from './Components/Order/OrderConfirm';
+
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOpenModal } from './Components/Hooks/useOpenModal';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
 import { useTitle } from './Components/Hooks/useTitle';
+import { useDB } from './Components/Hooks/useDB';
+import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
+import { Context } from './Components/Functions/context';
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCTrzuLsZiF73QzMPnlroxfDBnrPmFFmqI",
@@ -34,27 +41,33 @@ function App() {
   const authFirebase = firebase.auth;
   const auth = useAuth(authFirebase);
   const openItem = useOpenItem();
+
   const openModal = useOpenModal();
+
+  const orderConfirm = useOrderConfirm();
+
   const orders = useOrders();
-
+  const dataBase = firebase.database();
   useTitle(openItem.openItem);
-
+  const dbMenu = useDB(dataBase);
 
   return (
-    <>
+    <Context.Provider value={{
+      auth,
+      openItem,
+      dbMenu,
+      orders,
+      orderConfirm,
+      dataBase
+    }}>
       <GlobalStyle/>
-      <NavBar {...auth}/>
-      <Order 
-          {...orders} 
-          {...openItem} 
-          {...auth}
-          {...openModal}
-          firebaseDatabase={firebase.database}
-      />
-      <Menu {...openItem}/>
-        {openItem.openItem && <ModalItem {...openItem} {...orders}/> } 
-        {openModal.openModal && <ModalOrderItem {...openModal} {...orders} {...auth}/>}
-    </>
+      <NavBar/>
+      <Order {...openModal}/>
+      <Menu/>
+        {openItem.openItem && <ModalItem/> } 
+        {/* {openModal.openModal && <ModalOrderItem {...openModal} {...orders} {...auth}/>} */}
+        {orderConfirm.openOrderConfirm && <OrderConfirm/>}
+    </Context.Provider>
   );
 }
 
