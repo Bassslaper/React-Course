@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext} from'react';
 import styled from 'styled-components';
+import { ContextItem } from '../Functions/context';
+
 
 
 const CountWrapper = styled.div`
@@ -33,7 +35,12 @@ const ButtonCount = styled.button`
   border-radius: 5px;
 `;
 
-export function CountItem({ count, setCount, onChange }) {
+export function CountItem({onChange}) {
+
+  const { 
+    counter: { count, setCount}
+  } = useContext(ContextItem);
+
 
   return (
     <CountWrapper>

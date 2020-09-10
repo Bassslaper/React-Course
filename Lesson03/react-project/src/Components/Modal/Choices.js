@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext} from'react';
 import styled from 'styled-components';
+import { ContextItem } from '../Functions/context';
 
 const ChoicesWrap = styled.div`
   max-width: 500px;
@@ -27,7 +29,20 @@ const ChoicesLabel = styled.div `
   margin-right: 50px;
 `;
 
-export function Choices({ openItem, choice, changeChoices}) {
+export function Choices() {
+
+  const { 
+    openItem: {
+      setOpenItem,
+      openItem
+    },
+    choices: {
+      choice,
+      changeChoices
+    },
+
+  } = useContext(ContextItem);
+
 
   return (
       <>

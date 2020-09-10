@@ -14,7 +14,7 @@ import { useToppings } from '../Hooks/useTopping';
 import { useChoices } from '../Hooks/useChoices';
 import { Context } from '../Functions/context';
 import { OrderTitle, OrderTotal, TotalPriceItem, Overlay } from '../Style/ModalStyle';
-
+import { ContextItem } from '../Functions/context';
 
 const Modal = styled.div`
   position: relative;
@@ -129,39 +129,62 @@ export const ModalItem = () => {
   }
  
   return (
-    <Overlay id="overlay" onClick={closeModal}>
-    <Modal>
-      <Banner img={openItem.img}/>
-      <Container>
-         <ModalTitleBlock>
-            <h2>{openItem.name}</h2>
-            <span>{formatCurrency(openItem.price)}</span>
-         </ModalTitleBlock>
-         <CountItem {...counter}/>
-         {openItem.toppings && <h3>Добавки</h3>}
-         {openItem.toppings && <Toppings {...toppings}/>}
-         {openItem.choices && <Choices {...choices} openItem={openItem}/>}
-         <TotalPriceItem>
-           <span>Цена:</span>
-           <span>{formatCurrency(totalPrice(order))}</span>
-         </TotalPriceItem>
+    <ContextItem.Provider value={{
+      toppings,
+      choices,
+      openItem,
+      counter,
+      onChange
+    }}>
+        <Overlay id="overlay" onClick={closeModal}>
+          
+            <Modal>
+              <Banner img={openItem.img}/>
 
-         <ButtonCheckout 
-              onClick={isEdit ? editOrder : addToOrder}
-              disabled={order.choices && !order.choice}>
-           {isEdit ? 'Редактировать' : 'Добавить'}
-         </ButtonCheckout>
-     
-      </Container>  
-   
-    </Modal>
+              <Container>
+                <ModalTitleBlock>
+                    <h2>{openItem.name}</h2>
+                    <span>{formatCurrency(openItem.price)}</span>
+                </ModalTitleBlock>
+                <CountItem/>
+                {openItem.toppings && <h3>Добавки</h3>}
+                {openItem.toppings && <Toppings/>}
+                {openItem.choices && <Choices/>}
+                <TotalPriceItem>
+                  <span>Цена:</span>
+                  <span>{formatCurrency(totalPrice(order))}</span>
+                </TotalPriceItem>
 
-    </Overlay>
+                <ButtonCheckout 
+                      onClick={isEdit ? editOrder : addToOrder}
+                      disabled={order.choices && !order.choice}>
+                  {isEdit ? 'Редактировать' : 'Добавить'}
+                </ButtonCheckout>
+            
+              </Container>  
+            </Modal>
+
+        </Overlay>
+    </ContextItem.Provider>
   );
 };
 
 
-export const ModalOrderItem = ({openModal , setOpenModal, orders, authentication}) => {
+export const ModalOrderItem = () => {
+
+  const { 
+    openModal: {
+      setOpenModal,
+      openModal
+    },
+    orders: { 
+      orders,
+      setOrders
+    },
+    auth: {authentication}
+
+  } = useContext(Context);
+
   
   const closeModal = (e) => {
       console.log('e.target.id: ', e.target.id);

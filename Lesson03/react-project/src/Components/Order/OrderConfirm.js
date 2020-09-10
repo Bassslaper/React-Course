@@ -62,7 +62,10 @@ const {
       orders,
       setOrders
     },
-    dataBase
+    dataBase,
+    openModal: {
+      setOpenModal
+    }
    } = useContext(Context);
 
   const total = orders.reduce((result, order) => {
@@ -86,6 +89,7 @@ const {
             sendOrder(dataBase, orders, authentication);
             setOrders([]);
             setOpenOrderConfirm(false);
+            setOpenModal(authentication);
           }}
         >
           Подтвердить

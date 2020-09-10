@@ -58,14 +58,15 @@ function App() {
       dbMenu,
       orders,
       orderConfirm,
-      dataBase
+      dataBase,
+      openModal
     }}>
       <GlobalStyle/>
       <NavBar/>
       <Order {...openModal}/>
       <Menu/>
         {openItem.openItem && <ModalItem/> } 
-        {/* {openModal.openModal && <ModalOrderItem {...openModal} {...orders} {...auth}/>} */}
+        {openModal.openModal && <ModalOrderItem/>}
         {orderConfirm.openOrderConfirm && <OrderConfirm/>}
     </Context.Provider>
   );

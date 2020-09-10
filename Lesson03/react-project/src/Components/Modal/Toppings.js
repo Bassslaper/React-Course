@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext} from'react';
 import styled from 'styled-components';
+import { ContextItem } from '../Functions/context';
 
 const ToppingWrap = styled.div`
   max-width: 500px;
@@ -30,7 +31,12 @@ const ToppingCheckbox = styled.input`
   background-color: #f6f6f6;
 `;
 
-export function Toppings({ toppings, checkToppings}) {
+export function Toppings() {
+
+  const { 
+    toppings: { toppings, checkToppings}
+  } = useContext(ContextItem);
+
   return (
       <ToppingWrap>
         {toppings.map((item, i) => (
