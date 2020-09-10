@@ -133,8 +133,7 @@ export const ModalItem = () => {
       toppings,
       choices,
       openItem,
-      counter,
-      onChange
+      counter
     }}>
         <Overlay id="overlay" onClick={closeModal}>
           
