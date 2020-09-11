@@ -45,7 +45,7 @@ export function CountItem() {
     }
   } = useContext(ContextItem);
 
-
+  console.log('count: ', count);
   return (
     <CountWrapper>
       <span>Количество:</span>

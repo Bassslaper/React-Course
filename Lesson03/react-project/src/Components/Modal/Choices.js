@@ -29,13 +29,9 @@ const ChoicesLabel = styled.div `
   margin-right: 50px;
 `;
 
-export function Choices() {
+export function Choices({openItem}) {
 
   const { 
-    openItem: {
-      setOpenItem,
-      openItem
-    },
     choices: {
       choice,
       changeChoices

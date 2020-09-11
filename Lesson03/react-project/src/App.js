@@ -65,7 +65,7 @@ function App() {
       <NavBar/>
       <Order {...openModal}/>
       <Menu/>
-        {openItem.openItem && <ModalItem/> } 
+        {openItem.openItem && <ModalItem /> } 
         {openModal.openModal && <ModalOrderItem/>}
         {orderConfirm.openOrderConfirm && <OrderConfirm/>}
     </Context.Provider>
