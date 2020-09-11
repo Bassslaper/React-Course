@@ -132,7 +132,6 @@ export const ModalItem = () => {
     <ContextItem.Provider value={{
       toppings,
       choices,
-      openItem,
       counter
     }}>
         <Overlay id="overlay" onClick={closeModal}>
@@ -148,7 +147,7 @@ export const ModalItem = () => {
                 <CountItem/>
                 {openItem.toppings && <h3>Добавки</h3>}
                 {openItem.toppings && <Toppings/>}
-                {openItem.choices && <Choices/>}
+                {openItem.choices && <Choices openItem={openItem}/>}
                 <TotalPriceItem>
                   <span>Цена:</span>
                   <span>{formatCurrency(totalPrice(order))}</span>
