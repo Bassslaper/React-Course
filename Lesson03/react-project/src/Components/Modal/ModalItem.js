@@ -185,10 +185,9 @@ export const ModalOrderItem = () => {
 
   
   const closeModal = (e) => {
-      console.log('e.target.id: ', e.target.id);
+
     if(e.target.id === 'overlay') {
       setOpenModal(null);
-      console.log('openModal из Модалки', openModal);
     }
   };
 

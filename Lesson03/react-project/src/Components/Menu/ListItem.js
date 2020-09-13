@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext} from'react';
 import styled from 'styled-components';
 import { formatCurrency } from '../Functions/secondartFuncrion';
-
+import { Context } from '../Functions/context';
 
 const List = styled.ul`
    display: flex;
@@ -46,19 +46,24 @@ const Item = styled.li`
   }
 `;
 
-export const ListItem = ({ itemList, setOpenItem }) => (
-  <List>
-    {itemList.map(item => (
-      <Item 
-          key={item.id}
-          img={item.img}
-          onClick={() => setOpenItem(item)}
-      >
+export const ListItem = ({ itemList}) => {
 
-        <div>{item.name}</div>
-        <div>{formatCurrency(item.price)}</div>
+  const {openItem: {setOpenItem}} = useContext(Context);
 
-      </Item>
-    ))}
-  </List>
-);
+  return (
+          <List>
+            {itemList.map(item => (
+              <Item 
+                  key={item.id}
+                  img={item.img}
+                  onClick={() => setOpenItem(item)}
+              >
+
+                <div>{item.name}</div>
+                <div>{formatCurrency(item.price)}</div>
+
+              </Item>
+            ))}
+          </List>
+  );
+};

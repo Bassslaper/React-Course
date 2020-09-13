@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import styled from 'styled-components';
 import garbageCanImg from '../../image/garbage_can.svg';
 import { totalPrice } from '../Functions/secondartFuncrion';
 import { formatCurrency } from '../Functions/secondartFuncrion';
 import { totalTopping } from '../Functions/secondartFuncrion';
+import { Context } from '../Functions/context';
 
 const GarbageButton = styled.button`
   width: 24px;
@@ -65,7 +66,9 @@ const ItemChoice = styled.span`
 
 
 
-export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
+export const OrderListItem = ({ order, index, deleteItem }) => {
+
+    const {openItem: {setOpenItem}} = useContext(Context);
 
     const refDeleteButton = useRef(null);
 

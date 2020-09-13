@@ -44,20 +44,12 @@ const EmptyList = styled.p`
   margin-bottom: 20px;
 `;
 
-export const Order = ({ setOpenModal}) => {
+export const Order = () => {
 
   const { 
-    openItem: {setOpenItem}, 
-    auth: {
-      logIn, authentication
-    }, 
-    orderConfirm: {
-      setOpenOrderConfirm 
-    }, 
-    orders: { 
-      orders,
-      setOrders
-    }
+    auth: {logIn, authentication}, 
+    orderConfirm: {setOpenOrderConfirm}, 
+    orders: { orders,setOrders}
   } = useContext(Context);
 
 
@@ -93,7 +85,6 @@ export const Order = ({ setOpenModal}) => {
                 order={order}
                 deleteItem={deleteItem}
                 index={index}
-                setOpenItem={setOpenItem}
             />)}
           </OrderList> : 
             <EmptyList>Список заказов пуст</EmptyList>

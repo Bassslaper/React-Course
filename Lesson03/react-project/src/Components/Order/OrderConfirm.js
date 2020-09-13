@@ -37,7 +37,6 @@ const rulesData = {
 
 const sendOrder = (dataBase, orders, authentication) => {
     const newOrder = orders.map(projection(rulesData));
-    console.log('dataBase', dataBase);
     dataBase.ref('orders').push().set({
       nameClient: authentication.displayName,
       email: authentication.email,

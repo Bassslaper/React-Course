@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import React, { useContext} from'react';
+import React, {useContext}from'react';
 import styled from 'styled-components';
 // import dbMenu from '../DBMenu';
 import { ListItem } from './ListItem';
@@ -42,12 +42,9 @@ const SectionMenu = styled.section`
 padding: 30px;`;
 
 
-
 export const Menu = () => {
 
-  const { openItem, dbMenu } = useContext(Context);
-
-  const {setOpenItem} = openItem;
+  const { dbMenu} = useContext(Context);
 
 //  const res= useFetch();
 
@@ -63,7 +60,7 @@ export const Menu = () => {
                 <h2>Бургеры</h2>
                 <ListItem 
                     itemList={dbMenu.burger}
-                    setOpenItem={setOpenItem}
+    
                 />
               </SectionMenu>
 
@@ -71,7 +68,7 @@ export const Menu = () => {
                 <h2>Закуски / Напитки</h2>
                 <ListItem 
                     itemList={dbMenu.other}
-                    setOpenItem={setOpenItem}
+
                 />
               </SectionMenu>
             </> :
